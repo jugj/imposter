@@ -4,27 +4,27 @@ using UnityEngine;
 
     public class moving : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public float speed = 5f;
+
+  private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(Input.GetKey("w")){
-        transform.Translate(Vector2.up*speed*Time.deltaTime, Space.World);}
+        rb.AddForce(Vector2.up * speed, ForceMode2D.Impulse);}
           if(Input.GetKey("s")){
-        transform.Translate(Vector2.down*speed*Time.deltaTime, Space.World);}  
+       rb.AddForce(Vector2.down * speed, ForceMode2D.Impulse);}
         if(Input.GetKey("d")){
-        transform.Translate(Vector2.right*speed*Time.deltaTime, Space.World);}
+        rb.AddForce(Vector2.right * speed, ForceMode2D.Impulse);}
           if(Input.GetKey("a")){
-        transform.Translate(Vector2.left*speed*Time.deltaTime, Space.World);}
+        rb.AddForce(Vector2.left * speed, ForceMode2D.Impulse);}
         
     }
-    
-    private void OnCollisionEnter2D(Collision2D Monster){
-    Destroy(gameObject);}
 }
